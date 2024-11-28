@@ -2,6 +2,8 @@
 #include <memory>
 #include <vector>
 #include "parser.h"
+#include "ast.h"
+#include "lexer.h"
 using namespace std;
 
 

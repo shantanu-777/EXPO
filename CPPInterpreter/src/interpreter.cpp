@@ -1,4 +1,5 @@
 #include "interpreter.h"
+#include "ast.h"  // Include AST node definitions.
 #include <stdexcept>
 #include <iostream>
 #include <memory>
@@ -9,7 +10,7 @@ int Interpreter::execute(const std::unique_ptr<ASTNode> &node) {
     } else if (auto binaryOpNode = dynamic_cast<const BinaryOpNode *>(node.get())) {
         return visit(binaryOpNode);
     }
-    throw runtime_error("Unknown AST node type in execute()");
+    throw std::runtime_error("Unknown AST node type in execute()");
 }
 
 int Interpreter::visit(const NumberNode *node) {
@@ -25,9 +26,9 @@ int Interpreter::visit(const BinaryOpNode *node) {
         case '-': return leftValue - rightValue;
         case '*': return leftValue * rightValue;
         case '/': 
-            if (rightValue == 0) throw runtime_error("Division by zero");
+            if (rightValue == 0) throw std::runtime_error("Division by zero");
             return leftValue / rightValue;
         default:
-            throw runtime_error("Unknown operator in BinaryOpNode");
+            throw std::runtime_error("Unknown operator in BinaryOpNode");
     }
 }

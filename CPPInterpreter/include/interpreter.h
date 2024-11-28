@@ -1,13 +1,13 @@
-//Header files for modular code.
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
-using namespace std;
 
+#include <memory>
 #include "parser.h"
+#include "ast.h"  // Include AST node definitions.
 
 class Interpreter {
 public:
-    int execute(const unique_ptr<ASTNode> &node);
+    int execute(const std::unique_ptr<ASTNode> &node);
 
 private:
     int visit(const NumberNode *node);
